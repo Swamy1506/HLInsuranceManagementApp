@@ -38,7 +38,7 @@ namespace HLInsuranceManagementApp.API.Controllers
             }
             catch (Exception ex)
             {
-                using (_logger.BeginScope(new Dictionary<string, object> { { "Pages", "GetAllPages" } }))
+                using (_logger.BeginScope(new Dictionary<string, object> { { "Borrower", "GetAllBorrowers" } }))
                 {
                     _logger.LogError(ex.Message);
                 }

@@ -11,7 +11,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
     {
         readonly HLIMDataContext _hLIMDataContext;
 
-        public BorrowerRepository(HLIMDataContext hLIMDataContext) : base(employeeContext)
+        public BorrowerRepository(HLIMDataContext hLIMDataContext) : base(hLIMDataContext)
         {
             _hLIMDataContext = hLIMDataContext;
         }
