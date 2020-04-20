@@ -8,6 +8,8 @@ namespace HLInsuranceManagementApp.Application.Services.Interfaces
 {
     public interface IBorrowerService
     {
-        Task<int> AddBorrower(BorrowerDTO entity);
+        void AddBorrower(BorrowerDTO entity);
+
+        List<BorrowerDTO> GetAll();
     }
 }

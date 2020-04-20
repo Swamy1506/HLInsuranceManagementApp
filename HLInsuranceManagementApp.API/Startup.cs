@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HLInsuranceManagementApp.Application;
 using HLInsuranceManagementApp.Application.AutoMapperHelper;
 using HLInsuranceManagementApp.Infrastructure;
 using HLInsuranceManagementApp.Infrastructure.Interfaces.Repositories;
@@ -33,7 +34,7 @@ namespace HLInsuranceManagementApp.API
         {
             services.AddAutoMapper(typeof(AutoMapperHelper));
             services.AddDbContext<HLIMDataContext>(opts => opts.UseSqlServer(this.Configuration.GetConnectionString("HLIMS")));
-            services.AddScoped<IBorrowerRepository, BorrowerRepository>();
+            services.AddAppServices();
             services.AddControllers();
         }
 

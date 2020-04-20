@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using HLInsuranceManagementApp.Application.Models;
-using HLInsuranceManagementApp.Domain.Entities;
-using HLInsuranceManagementApp.Infrastructure.Interfaces.Repositories;
+using HLInsuranceManagementApp.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,16 +15,21 @@ namespace HLInsuranceManagementApp.API.Controllers
     public class BorrowerController : ControllerBase
     {
 
-        private readonly IBorrowerRepository _borrowerRepository;
-        private readonly IMapper _mapper;
+        private readonly IBorrowerService _borrowerService;
         private readonly ILogger<BorrowerController> _logger;
-        public BorrowerController(IBorrowerRepository borrowerRepository, IMapper mapper, ILogger<BorrowerController> logger)
+        public BorrowerController(IBorrowerService borrowerService, 
+            ILogger<BorrowerController> logger)
         {
-            _borrowerRepository = borrowerRepository;
+            _borrowerService = borrowerService;
             _logger = logger;
-            _mapper = mapper;
         }
 
+
+        /// <summary>
+        /// Get Api to get all the borrowers
+        /// </summary>
+        /// <returns></returns>
+        
         [HttpGet]
         [Route("GetAllBorrowers")]
         public List<BorrowerDTO> GetAllBorrowers()
@@ -34,7 +37,7 @@ namespace HLInsuranceManagementApp.API.Controllers
             var borrowersList = new List<BorrowerDTO>();
             try
             {
-                borrowersList = _mapper.Map<List<Borrower>, List<BorrowerDTO>>(_borrowerRepository.GetAll());
+                borrowersList = _borrowerService.GetAll();
             }
             catch (Exception ex)
             {
@@ -42,7 +45,6 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
-
             }
             return borrowersList;
         }
