@@ -17,11 +17,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HLInsuranceManagementApp.API
 {
     public class Startup
     {
+        private const string ApiName = "Loans API";
+        private const string ApiVersion = "v1";
+        private const string SwaggerEndpoint = "/swagger/v1/swagger.json";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,6 +42,12 @@ namespace HLInsuranceManagementApp.API
             services.AddDbContext<HLIMDataContext>(opts => opts.UseSqlServer(this.Configuration.GetConnectionString("HLIMS")));
             services.AddAppServices();
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(ApiVersion, new OpenApiInfo { Title = ApiName, Version = ApiVersion });
+                //c.OperationFilter<AssignOAuth2SecurityRequirements>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +57,15 @@ namespace HLInsuranceManagementApp.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(SwaggerEndpoint, ApiName);
+            });
 
             app.UseHttpsRedirection();
 

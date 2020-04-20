@@ -48,5 +48,32 @@ namespace HLInsuranceManagementApp.API.Controllers
             }
             return borrowersList;
         }
+
+       /// <summary>
+       /// save borrower information
+       /// </summary>
+       /// <param name="borrowerInfo"></param>
+       /// <returns></returns>
+        [HttpPost]
+        [Route("SaveBorrower")]
+        public async Task<int> SaveBorrower([FromBody] BorrowerDTO borrowerInfo)
+        {
+            int borrowerId = 0;
+            try
+            {
+                borrowerId = await _borrowerService.Add(borrowerInfo);
+            }
+            catch (Exception ex)
+            {
+                using (_logger.BeginScope(new Dictionary<string, object> { { "Pages", "SavePage" } }))
+                {
+                    _logger.LogError(ex.Message);
+                }
+
+            }
+            return borrowerId;
+
+        }
+
     }
 }

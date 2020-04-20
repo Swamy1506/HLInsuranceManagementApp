@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace HLInsuranceManagementApp.Application.Services.Interfaces
 {
-    public interface IBorrowerService
+    public interface IBorrowerService : ICommonService<BorrowerDTO>
     {
-        void AddBorrower(BorrowerDTO entity);
-
-        List<BorrowerDTO> GetAll();
+        
     }
 }

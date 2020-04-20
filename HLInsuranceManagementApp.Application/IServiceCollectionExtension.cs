@@ -14,7 +14,6 @@ namespace HLInsuranceManagementApp.Application
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
-            services.AddDbContext<HLIMDataContext>(ServiceLifetime.Scoped);
 
             // borrower
             services.AddScoped(typeof(IBorrowerRepository), typeof(BorrowerRepository));

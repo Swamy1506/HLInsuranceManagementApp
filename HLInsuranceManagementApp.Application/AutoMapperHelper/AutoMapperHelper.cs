@@ -11,8 +11,10 @@ namespace HLInsuranceManagementApp.Application.AutoMapperHelper
     {
         public AutoMapperHelper()
         {
-            CreateMap<BorrowerDTO, Borrower>().ReverseMap();
             CreateMap<BorrowerDTO, Borrower>();
+            CreateMap<Borrower, BorrowerDTO>();
+            CreateMap<PropertyDTO, Property>();
+            CreateMap<Property, PropertyDTO>();
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HLInsuranceManagementApp.Infrastructure.Repositories
 {
@@ -16,14 +17,21 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
             Context = context;
         }
 
-        public void Add(TEntity entity)
+        public async Task<int> Add(TEntity entity)
         {
+            var newId = 0;
             Context.Set<TEntity>().Add(entity);
+            await Context.SaveChangesAsync();
+
+             //entity.GetType().GetProperty("Id").SetValue(entity, newId);
+
+            return newId;
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().AddRange(entities);
+
         }
 
         public TEntity Get(int id)
