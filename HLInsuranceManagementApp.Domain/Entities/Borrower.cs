@@ -1,10 +1,12 @@
-﻿using System;
+﻿using HLInsuranceManagementApp.Domain.Common;
+using HLInsuranceManagementApp.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HLInsuranceManagementApp.Domain
+namespace HLInsuranceManagementApp.Domain.Entities
 {
-    public class Borrower
+    public class Borrower : AuditEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -14,6 +16,7 @@ namespace HLInsuranceManagementApp.Domain
         public string Email { get; set; }
         public string Phone { get; set; }
         public string StreetAddress { get; set; }
+        public IList<Property> Properties { get; set; }
 
     }
 }
