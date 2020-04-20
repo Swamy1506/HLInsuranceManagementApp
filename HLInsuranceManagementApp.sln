@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.Infrastructure", "HLInsuranceManagementApp.Infrastructure\HLInsuranceManagementApp.Infrastructure.csproj", "{07E9DBA8-BFFD-44D1-9D87-35DE29C0DBEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLInsuranceManagementApp.API", "HLInsuranceManagementApp.API\HLInsuranceManagementApp.API.csproj", "{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.API", "HLInsuranceManagementApp.API\HLInsuranceManagementApp.API.csproj", "{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.Domain", "HLInsuranceManagementApp.Domain\HLInsuranceManagementApp.Domain.csproj", "{13FB5CAD-5792-4665-B930-940206F0ED83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.Application", "HLInsuranceManagementApp.Application\HLInsuranceManagementApp.Application.csproj", "{7774B094-1F0E-48A4-BD75-2829A1C49343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13FB5CAD-5792-4665-B930-940206F0ED83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13FB5CAD-5792-4665-B930-940206F0ED83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13FB5CAD-5792-4665-B930-940206F0ED83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13FB5CAD-5792-4665-B930-940206F0ED83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7774B094-1F0E-48A4-BD75-2829A1C49343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7774B094-1F0E-48A4-BD75-2829A1C49343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7774B094-1F0E-48A4-BD75-2829A1C49343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7774B094-1F0E-48A4-BD75-2829A1C49343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

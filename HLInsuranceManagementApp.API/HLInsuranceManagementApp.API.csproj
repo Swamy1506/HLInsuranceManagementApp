@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HLInsuranceManagementApp.Application\HLInsuranceManagementApp.Application.csproj" />
     <ProjectReference Include="..\HLInsuranceManagementApp.Infrastructure\HLInsuranceManagementApp.Infrastructure.csproj" />
   </ItemGroup>
 
