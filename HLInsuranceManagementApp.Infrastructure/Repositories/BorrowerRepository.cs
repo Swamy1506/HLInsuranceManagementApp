@@ -9,8 +9,11 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
 {
     public class BorrowerRepository : Repository<Borrower>, IBorrowerRepository
     {
-        public BorrowerRepository(DbContext context) : base(context)
+        readonly HLIMDataContext _hLIMDataContext;
+
+        public BorrowerRepository(HLIMDataContext hLIMDataContext) : base(employeeContext)
         {
+            _hLIMDataContext = hLIMDataContext;
         }
     }
 }

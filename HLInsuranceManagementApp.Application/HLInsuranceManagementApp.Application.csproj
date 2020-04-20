@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HLInsuranceManagementApp.Domain\HLInsuranceManagementApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

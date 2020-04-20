@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HLInsuranceManagementApp.Infrastructure", "HLInsuranceManagementApp.Infrastructure\HLInsuranceManagementApp.Infrastructure.csproj", "{07E9DBA8-BFFD-44D1-9D87-35DE29C0DBEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLInsuranceManagementApp.API", "HLInsuranceManagementApp.API\HLInsuranceManagementApp.API.csproj", "{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{07E9DBA8-BFFD-44D1-9D87-35DE29C0DBEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07E9DBA8-BFFD-44D1-9D87-35DE29C0DBEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07E9DBA8-BFFD-44D1-9D87-35DE29C0DBEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1CC84A8-E4C1-48E8-8F9F-EA91DF25CCF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

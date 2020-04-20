@@ -9,15 +9,16 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
-        public Repository(DbContext context)
+        protected readonly HLIMDataContext Context;
+
+        public Repository(HLIMDataContext context)
         {
             Context = context;
         }
 
         public void Add(TEntity entity)
         {
-           Context.Set<TEntity>().Add(entity);
+            Context.Set<TEntity>().Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
@@ -30,7 +31,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
             return Context.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public List<TEntity> GetAll()
         {
             return Context.Set<TEntity>().ToList();
         }

@@ -1,17 +1,17 @@
-﻿using HLInsuranceManagementApp.Domain.Common;
-using HLInsuranceManagementApp.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HLInsuranceManagementApp.Domain.Entities
+namespace HLInsuranceManagementApp.Application.Models
 {
-    public class Borrower : AuditEntity
+    public class BorrowerDTO
     {
-        public Borrower()
+
+        public BorrowerDTO()
         {
-            Properties = new List<Property>();
+            Properties = new List<PropertyDTO>();
         }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -20,7 +20,6 @@ namespace HLInsuranceManagementApp.Domain.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public string StreetAddress { get; set; }
-        public IList<Property> Properties { get; set; }
-
+        public IList<PropertyDTO> Properties { get; set; }
     }
 }
