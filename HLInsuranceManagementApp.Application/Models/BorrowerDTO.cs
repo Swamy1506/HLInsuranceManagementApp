@@ -28,7 +28,12 @@ namespace HLInsuranceManagementApp.Application.Models
     {
         public BorrowerValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("Firstname shouldn't be empty");
+
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("The First Name cannot be blank.")
+                                    .Length(0, 100).WithMessage("The First Name cannot be more than 100 characters.");
+
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("The Last Name cannot be blank.");
+
             RuleFor(x => x.Email).EmailAddress();
         }
     }

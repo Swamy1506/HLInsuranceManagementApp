@@ -56,6 +56,7 @@ namespace HLInsuranceManagementApp.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("SaveBorrower")]
+        [ValidateFilter]
         public async Task<int> SaveBorrower([FromBody] BorrowerDTO borrowerInfo)
         {
             int borrowerId = 0;

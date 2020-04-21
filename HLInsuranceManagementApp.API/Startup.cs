@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HLInsuranceManagementApp.API.Middleware;
 using HLInsuranceManagementApp.Application;
 using HLInsuranceManagementApp.Application.AutoMapperHelper;
 using HLInsuranceManagementApp.Infrastructure;
@@ -51,12 +52,14 @@ namespace HLInsuranceManagementApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //loggerFactory.AddFile($"Logs/mylog-{DateTime.Now}.txt");
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -72,6 +75,8 @@ namespace HLInsuranceManagementApp.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
