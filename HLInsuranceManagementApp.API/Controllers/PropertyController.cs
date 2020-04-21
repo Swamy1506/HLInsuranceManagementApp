@@ -12,18 +12,17 @@ namespace HLInsuranceManagementApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BorrowerController : ControllerBase
+    public class PropertyController : ControllerBase
     {
 
-        private readonly IBorrowerService _borrowerService;
-        private readonly ILogger<BorrowerController> _logger;
-        public BorrowerController(IBorrowerService borrowerService,
-            ILogger<BorrowerController> logger)
+        private readonly IPropertyService _propertyService;
+        private readonly ILogger<PropertyController> _logger;
+        public PropertyController(IPropertyService propertyService,
+            ILogger<PropertyController> logger)
         {
-            _borrowerService = borrowerService;
+            _propertyService = propertyService;
             _logger = logger;
         }
-
 
         /// <summary>
         /// Get Api to get all the borrowers
@@ -31,17 +30,17 @@ namespace HLInsuranceManagementApp.API.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("GetAllBorrowers")]
-        public List<BorrowerDTO> GetAllBorrowers()
+        [Route("GetAllProperties")]
+        public List<PropertyDTO> GetAllBorrowers()
         {
-            var borrowersList = new List<BorrowerDTO>();
+            var borrowersList = new List<PropertyDTO>();
             try
             {
-                borrowersList = _borrowerService.GetAll();
+                borrowersList = _propertyService.GetAll();
             }
             catch (Exception ex)
             {
-                using (_logger.BeginScope(new Dictionary<string, object> { { "Borrower", "GetAllBorrowers" } }))
+                using (_logger.BeginScope(new Dictionary<string, object> { { "Property", "GetAllProperties" } }))
                 {
                     _logger.LogError(ex.Message);
                 }
@@ -50,29 +49,29 @@ namespace HLInsuranceManagementApp.API.Controllers
         }
 
         /// <summary>
-        /// save borrower information
+        /// save property information
         /// </summary>
-        /// <param name="borrowerInfo"></param>
+        /// <param name="propertyInfo"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("SaveBorrower")]
+        [Route("SaveProperty")]
         [ValidateFilter]
-        public async Task<int> SaveBorrower([FromBody] BorrowerDTO borrowerInfo)
+        public async Task<int> SaveProperty([FromBody] PropertyDTO propertyInfo)
         {
-            int borrowerId = 0;
+            int propertyId = 0;
             try
             {
-                borrowerId = await _borrowerService.Add(borrowerInfo);
+                propertyId = await _propertyService.Add(propertyInfo);
             }
             catch (Exception ex)
             {
-                using (_logger.BeginScope(new Dictionary<string, object> { { "Borrower", "SaveBorrower" } }))
+                using (_logger.BeginScope(new Dictionary<string, object> { { "Property", "SaveProperty" } }))
                 {
                     _logger.LogError(ex.Message);
                 }
 
             }
-            return borrowerId;
+            return propertyId;
 
         }
 

@@ -26,6 +26,9 @@ namespace HLInsuranceManagementApp.Application
             services.AddScoped(typeof(IBorrowerRepository), typeof(BorrowerRepository));
             services.AddScoped(typeof(IBorrowerService), typeof(BorrowerService));
 
+            // property
+            services.AddScoped(typeof(IPropertyRepository), typeof(PropertyRepository));
+            services.AddScoped(typeof(IPropertyService), typeof(PropertyService));
 
             return services;
 

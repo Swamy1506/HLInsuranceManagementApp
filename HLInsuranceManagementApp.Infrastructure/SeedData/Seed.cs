@@ -8,9 +8,6 @@ namespace HLInsuranceManagementApp.Infrastructure.SeedData
 {
     public class Seed
     {
-
-
-
         public static void SeedData(HLIMDataContext context)
         {
 
