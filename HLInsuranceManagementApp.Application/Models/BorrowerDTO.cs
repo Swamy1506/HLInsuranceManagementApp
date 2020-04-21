@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,5 +22,14 @@ namespace HLInsuranceManagementApp.Application.Models
         public string Phone { get; set; }
         public string StreetAddress { get; set; }
         public IList<PropertyDTO> Properties { get; set; }
+    }
+
+    public class BorrowerValidator : AbstractValidator<BorrowerDTO>
+    {
+        public BorrowerValidator()
+        {
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("Firstname shouldn't be empty");
+            RuleFor(x => x.Email).EmailAddress();
+        }
     }
 }

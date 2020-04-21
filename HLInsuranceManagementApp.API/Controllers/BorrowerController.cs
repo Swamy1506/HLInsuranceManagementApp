@@ -17,7 +17,7 @@ namespace HLInsuranceManagementApp.API.Controllers
 
         private readonly IBorrowerService _borrowerService;
         private readonly ILogger<BorrowerController> _logger;
-        public BorrowerController(IBorrowerService borrowerService, 
+        public BorrowerController(IBorrowerService borrowerService,
             ILogger<BorrowerController> logger)
         {
             _borrowerService = borrowerService;
@@ -29,7 +29,7 @@ namespace HLInsuranceManagementApp.API.Controllers
         /// Get Api to get all the borrowers
         /// </summary>
         /// <returns></returns>
-        
+
         [HttpGet]
         [Route("GetAllBorrowers")]
         public List<BorrowerDTO> GetAllBorrowers()
@@ -49,11 +49,11 @@ namespace HLInsuranceManagementApp.API.Controllers
             return borrowersList;
         }
 
-       /// <summary>
-       /// save borrower information
-       /// </summary>
-       /// <param name="borrowerInfo"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// save borrower information
+        /// </summary>
+        /// <param name="borrowerInfo"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("SaveBorrower")]
         public async Task<int> SaveBorrower([FromBody] BorrowerDTO borrowerInfo)

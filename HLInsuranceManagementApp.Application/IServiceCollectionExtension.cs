@@ -1,5 +1,9 @@
-﻿using HLInsuranceManagementApp.Application.Services.Implementations;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using HLInsuranceManagementApp.Application.Models;
+using HLInsuranceManagementApp.Application.Services.Implementations;
 using HLInsuranceManagementApp.Application.Services.Interfaces;
+using HLInsuranceManagementApp.Application.Validators;
 using HLInsuranceManagementApp.Infrastructure;
 using HLInsuranceManagementApp.Infrastructure.Interfaces.Repositories;
 using HLInsuranceManagementApp.Infrastructure.Repositories;
@@ -14,6 +18,9 @@ namespace HLInsuranceManagementApp.Application
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
+
+            // validations for api objects
+            services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BorrowerRequestValidator>());
 
             // borrower
             services.AddScoped(typeof(IBorrowerRepository), typeof(BorrowerRepository));
