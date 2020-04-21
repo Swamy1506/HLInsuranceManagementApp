@@ -9,5 +9,7 @@ namespace HLInsuranceManagementApp.Domain.Entities
         public int Id { get; set; }
         public string Address { get; set; }
         public string Type { get; set; }
+        public int BorrowerId { get; set; }
+        public Borrower Borrower { get; set; }
     }
 }

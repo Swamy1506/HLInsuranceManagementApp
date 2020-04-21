@@ -20,7 +20,7 @@ namespace HLInsuranceManagementApp.Domain.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public string StreetAddress { get; set; }
-        public IList<Property> Properties { get; set; }
+        public List<Property> Properties { get; set; }
 
     }
 }
