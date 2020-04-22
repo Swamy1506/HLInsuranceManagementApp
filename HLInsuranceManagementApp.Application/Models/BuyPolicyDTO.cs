@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HLInsuranceManagementApp.Domain.Entities
+namespace HLInsuranceManagementApp.Application.Models
 {
-   public class BuyPolicy
+    public class BuyPolicyDTO
     {
         public int TransactionId { get; set; }
 
         public int LoanId { get; set; }
-        public Loan Loan { get; set; }
+        public LoanDTO Loan { get; set; }
 
         public int PolicyId { get; set; }
-        public InsurancePolicy Policy { get; set; }
+        public InsurancePolicyDTO Policy { get; set; }
 
         public DateTime? ExpireDate { get; set; }
     }
