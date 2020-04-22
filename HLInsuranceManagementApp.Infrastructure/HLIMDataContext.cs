@@ -64,9 +64,6 @@ namespace HLInsuranceManagementApp.Infrastructure
             builder.Entity<InsuranceCompany>()
             .HasKey(o => o.CompanyId);
             
-            builder.Entity<Loan>()
-            .HasKey(o => o.LoanId);
-            
             builder.Entity<InsurancePolicy>()
             .HasKey(o => o.PolicyId);
 
@@ -76,10 +73,10 @@ namespace HLInsuranceManagementApp.Infrastructure
                 .HasForeignKey(s => s.BorrowerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<BuyPolicy>()
-               .HasOne<Loan>(g => g.Loan)
-               .WithOne(s => s.BuyPolicy)
-               .HasForeignKey<Loan>(s => s.LoanId);
+            builder.Entity<Loan>()
+              .HasOne<BuyPolicy>(g => g.BuyPolicy)
+              .WithOne(s => s.Loan)
+              .HasForeignKey<BuyPolicy>(s => s.LoanId);
 
             builder.Entity<InsuranceCompany>()
                 .HasMany<InsurancePolicy>(g => g.InsurancePolicies)

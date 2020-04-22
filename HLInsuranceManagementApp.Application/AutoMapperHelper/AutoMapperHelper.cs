@@ -13,8 +13,13 @@ namespace HLInsuranceManagementApp.Application.AutoMapperHelper
         {
             CreateMap<BorrowerDTO, Borrower>();
             CreateMap<Borrower, BorrowerDTO>();
+
             CreateMap<PropertyDTO, Property>();
             CreateMap<Property, PropertyDTO>();
+
+            CreateMap<Loan, LoanDTO>();
+            CreateMap<LoanDTO, Loan>();
+
         }
     }
 }

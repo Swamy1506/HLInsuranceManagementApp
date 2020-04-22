@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HLInsuranceManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(HLIMDataContext))]
-    [Migration("20200421100147_Initial_CreateMigration")]
-    partial class Initial_CreateMigration
+    [Migration("20200422075050_Initial_Migration")]
+    partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,6 +99,9 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
 
                     b.HasKey("TransactionId");
 
+                    b.HasIndex("LoanId")
+                        .IsUnique();
+
                     b.HasIndex("PolicyId");
 
                     b.ToTable("BuyPolicy");
@@ -144,8 +147,10 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("HLInsuranceManagementApp.Domain.Entities.Loan", b =>
                 {
-                    b.Property<int>("LoanId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BankId")
                         .HasColumnType("int");
@@ -165,7 +170,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                     b.Property<int>("RemainingTenure")
                         .HasColumnType("int");
 
-                    b.HasKey("LoanId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BankId");
 
@@ -199,6 +204,12 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("HLInsuranceManagementApp.Domain.Entities.BuyPolicy", b =>
                 {
+                    b.HasOne("HLInsuranceManagementApp.Domain.Entities.Loan", "Loan")
+                        .WithOne("BuyPolicy")
+                        .HasForeignKey("HLInsuranceManagementApp.Domain.Entities.BuyPolicy", "LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HLInsuranceManagementApp.Domain.Entities.InsurancePolicy", "Policy")
                         .WithMany()
                         .HasForeignKey("PolicyId")
@@ -220,12 +231,6 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                     b.HasOne("HLInsuranceManagementApp.Domain.Entities.Bank", "Bank")
                         .WithMany()
                         .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HLInsuranceManagementApp.Domain.Entities.BuyPolicy", "BuyPolicy")
-                        .WithOne("Loan")
-                        .HasForeignKey("HLInsuranceManagementApp.Domain.Entities.Loan", "LoanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HLInsuranceManagementApp.Infrastructure.Migrations
 {
-    public partial class Initial_CreateMigration : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -99,6 +99,36 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Loan",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrginalAmount = table.Column<int>(nullable: false),
+                    RemainingAmount = table.Column<int>(nullable: false),
+                    OrginalTenure = table.Column<int>(nullable: false),
+                    RemainingTenure = table.Column<int>(nullable: false),
+                    PropertyId = table.Column<int>(nullable: false),
+                    BankId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Loan", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Loan_Bank_BankId",
+                        column: x => x.BankId,
+                        principalTable: "Bank",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Loan_Property_PropertyId",
+                        column: x => x.PropertyId,
+                        principalTable: "Property",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BuyPolicy",
                 columns: table => new
                 {
@@ -112,6 +142,12 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_BuyPolicy", x => x.TransactionId);
                     table.ForeignKey(
+                        name: "FK_BuyPolicy_Loan_LoanId",
+                        column: x => x.LoanId,
+                        principalTable: "Loan",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_BuyPolicy_InsurancePolicy_PolicyId",
                         column: x => x.PolicyId,
                         principalTable: "InsurancePolicy",
@@ -119,40 +155,11 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Loan",
-                columns: table => new
-                {
-                    LoanId = table.Column<int>(nullable: false),
-                    OrginalAmount = table.Column<int>(nullable: false),
-                    RemainingAmount = table.Column<int>(nullable: false),
-                    OrginalTenure = table.Column<int>(nullable: false),
-                    RemainingTenure = table.Column<int>(nullable: false),
-                    PropertyId = table.Column<int>(nullable: false),
-                    BankId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Loan", x => x.LoanId);
-                    table.ForeignKey(
-                        name: "FK_Loan_Bank_BankId",
-                        column: x => x.BankId,
-                        principalTable: "Bank",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Loan_BuyPolicy_LoanId",
-                        column: x => x.LoanId,
-                        principalTable: "BuyPolicy",
-                        principalColumn: "TransactionId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Loan_Property_PropertyId",
-                        column: x => x.PropertyId,
-                        principalTable: "Property",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_BuyPolicy_LoanId",
+                table: "BuyPolicy",
+                column: "LoanId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_BuyPolicy_PolicyId",
@@ -183,25 +190,25 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Loan");
-
-            migrationBuilder.DropTable(
-                name: "Bank");
-
-            migrationBuilder.DropTable(
                 name: "BuyPolicy");
 
             migrationBuilder.DropTable(
-                name: "Property");
+                name: "Loan");
 
             migrationBuilder.DropTable(
                 name: "InsurancePolicy");
 
             migrationBuilder.DropTable(
-                name: "Borrower");
+                name: "Bank");
+
+            migrationBuilder.DropTable(
+                name: "Property");
 
             migrationBuilder.DropTable(
                 name: "InsuranceCompany");
+
+            migrationBuilder.DropTable(
+                name: "Borrower");
         }
     }
 }

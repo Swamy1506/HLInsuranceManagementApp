@@ -6,7 +6,7 @@ namespace HLInsuranceManagementApp.Domain.Entities
 {
     public class Loan
     {
-        public int LoanId { get; set; }
+        public int Id { get; set; }
         public int OrginalAmount { get; set; }
         public int RemainingAmount { get; set; }
         public int OrginalTenure { get; set; }
