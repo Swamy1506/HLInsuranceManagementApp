@@ -17,6 +17,9 @@ namespace HLInsuranceManagementApp.Application.AutoMapperHelper
             CreateMap<PropertyDTO, Property>();
             CreateMap<Property, PropertyDTO>();
 
+            CreateMap<Bank, BankDTO>();
+            CreateMap<BankDTO, Bank>();
+
             CreateMap<Loan, LoanDTO>();
             CreateMap<LoanDTO, Loan>();
 

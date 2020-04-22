@@ -11,6 +11,7 @@ namespace HLInsuranceManagementApp.Application.Models
         public string Address { get; set; }
         public string Type { get; set; }
         public int BorrowerId { get; set; }
+        public BorrowerDTO BorrowerInfo { get; set; }
     }
 
     public class PropertyValidator : AbstractValidator<PropertyDTO>

@@ -57,7 +57,12 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
         /// <returns></returns>
         public List<TEntity> GetAll()
         {
-            return Context.Set<TEntity>().ToList();
+            var query = Context.Set<TEntity>().AsQueryable();
+
+            foreach (var property in Context.Model.FindEntityType(typeof(TEntity)).GetNavigations())
+                query = query.Include(property.Name);
+
+            return query.ToList();
         }
 
         /// <summary>
