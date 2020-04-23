@@ -81,7 +81,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("HLInsuranceManagementApp.Domain.Entities.BuyPolicy", b =>
                 {
-                    b.Property<int>("TransactionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -95,7 +95,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                     b.Property<int>("PolicyId")
                         .HasColumnType("int");
 
-                    b.HasKey("TransactionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("LoanId")
                         .IsUnique();

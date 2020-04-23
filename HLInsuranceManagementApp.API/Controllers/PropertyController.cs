@@ -33,10 +33,9 @@ namespace HLInsuranceManagementApp.API.Controllers
         [Route("GetAllProperties")]
         public List<PropertyDTO> GetAllBorrowers()
         {
-            var borrowersList = new List<PropertyDTO>();
             try
             {
-                borrowersList = _propertyService.GetAll();
+                return _propertyService.GetAll();
             }
             catch (Exception ex)
             {
@@ -44,8 +43,8 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
+                throw ex;
             }
-            return borrowersList;
         }
 
         /// <summary>
@@ -58,10 +57,9 @@ namespace HLInsuranceManagementApp.API.Controllers
         [ValidateFilter]
         public async Task<int> SaveProperty([FromBody] PropertyDTO propertyInfo)
         {
-            int propertyId = 0;
             try
             {
-                propertyId = await _propertyService.Add(propertyInfo);
+                return await _propertyService.Add(propertyInfo);
             }
             catch (Exception ex)
             {
@@ -69,9 +67,8 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
-
+                throw ex;
             }
-            return propertyId;
 
         }
 

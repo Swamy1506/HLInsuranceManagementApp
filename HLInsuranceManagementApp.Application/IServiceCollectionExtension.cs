@@ -33,6 +33,10 @@ namespace HLInsuranceManagementApp.Application
             // loan
             services.AddScoped(typeof(ILoanRepository), typeof(LoanRepository));
             services.AddScoped(typeof(ILoanService), typeof(LoanService));
+            
+            // buy policy to loan
+            services.AddScoped(typeof(IBuyPolicyRepository), typeof(BuyPolicyRepository));
+            services.AddScoped(typeof(IBuyPolicyService), typeof(BuyPolicyService));
 
             return services;
 

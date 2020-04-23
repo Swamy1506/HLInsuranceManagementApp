@@ -12,12 +12,12 @@ namespace HLInsuranceManagementApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BuyPolicyController : ControllerBase
+    public class BuyPolicyToLoanController : ControllerBase
     {
         private readonly IBuyPolicyService _buyPolicyService;
-        private readonly ILogger<BuyPolicyController> _logger;
-        public BuyPolicyController(IBuyPolicyService buyPolicyService,
-            ILogger<BuyPolicyController> logger)
+        private readonly ILogger<BuyPolicyToLoanController> _logger;
+        public BuyPolicyToLoanController(IBuyPolicyService buyPolicyService,
+            ILogger<BuyPolicyToLoanController> logger)
         {
             _buyPolicyService = buyPolicyService;
             _logger = logger;

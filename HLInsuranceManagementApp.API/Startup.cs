@@ -42,7 +42,9 @@ namespace HLInsuranceManagementApp.API
             services.AddAutoMapper(typeof(AutoMapperHelper));
             services.AddDbContext<HLIMDataContext>(opts => opts.UseSqlServer(this.Configuration.GetConnectionString("HLIMS")));
             services.AddAppServices();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddSwaggerGen(c =>
             {
@@ -59,7 +61,10 @@ namespace HLInsuranceManagementApp.API
                 app.UseDeveloperExceptionPage();
             }
 
-            //loggerFactory.AddFile($"Logs/mylog-{DateTime.Now}.txt");
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
+            // loggerFactory.AddFile($"Logs/mylog-{DateTime.Now}.txt");
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -76,7 +81,6 @@ namespace HLInsuranceManagementApp.API
 
             app.UseAuthorization();
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

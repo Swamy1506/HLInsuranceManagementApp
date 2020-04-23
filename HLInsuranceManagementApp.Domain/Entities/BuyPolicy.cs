@@ -6,7 +6,7 @@ namespace HLInsuranceManagementApp.Domain.Entities
 {
    public class BuyPolicy
     {
-        public int TransactionId { get; set; }
+        public int Id { get; set; }
 
         public int LoanId { get; set; }
         public Loan Loan { get; set; }

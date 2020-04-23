@@ -62,7 +62,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Repositories
             foreach (var property in Context.Model.FindEntityType(typeof(TEntity)).GetNavigations())
                 query = query.Include(property.Name);
 
-            return query.ToList();
+            return query.AsNoTracking().ToList();
         }
 
         /// <summary>

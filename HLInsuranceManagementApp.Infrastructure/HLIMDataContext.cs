@@ -58,9 +58,6 @@ namespace HLInsuranceManagementApp.Infrastructure
 
             builder.Entity<Loan>().ToTable("Loan");
 
-            builder.Entity<BuyPolicy>()
-            .HasKey(o => o.TransactionId);
-
             builder.Entity<InsuranceCompany>()
             .HasKey(o => o.CompanyId);
             

@@ -23,6 +23,15 @@ namespace HLInsuranceManagementApp.Application.AutoMapperHelper
             CreateMap<Loan, LoanDTO>();
             CreateMap<LoanDTO, Loan>();
 
+            CreateMap<InsuranceCompanyDTO, InsuranceCompany>();
+            CreateMap<InsuranceCompany, InsuranceCompanyDTO>();
+
+            CreateMap<InsurancePolicyDTO, InsurancePolicy>();
+            CreateMap<InsurancePolicy, InsurancePolicyDTO>();
+
+            CreateMap<BuyPolicyDTO, BuyPolicy>();
+            CreateMap<BuyPolicy, BuyPolicyDTO>();
+
         }
     }
 }

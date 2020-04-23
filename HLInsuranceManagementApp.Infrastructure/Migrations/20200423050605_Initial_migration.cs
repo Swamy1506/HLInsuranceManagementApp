@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HLInsuranceManagementApp.Infrastructure.Migrations
 {
-    public partial class Initial_Migration : Migration
+    public partial class Initial_migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -132,7 +132,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                 name: "BuyPolicy",
                 columns: table => new
                 {
-                    TransactionId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LoanId = table.Column<int>(nullable: false),
                     PolicyId = table.Column<int>(nullable: false),
@@ -140,7 +140,7 @@ namespace HLInsuranceManagementApp.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BuyPolicy", x => x.TransactionId);
+                    table.PrimaryKey("PK_BuyPolicy", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BuyPolicy_Loan_LoanId",
                         column: x => x.LoanId,
