@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using HLInsuranceManagementApp.API.AuthExtensions;
 using HLInsuranceManagementApp.API.Middleware;
 using HLInsuranceManagementApp.Application;
 using HLInsuranceManagementApp.Application.AutoMapperHelper;
 using HLInsuranceManagementApp.Infrastructure;
 using HLInsuranceManagementApp.Infrastructure.Interfaces.Repositories;
 using HLInsuranceManagementApp.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +46,23 @@ namespace HLInsuranceManagementApp.API
             services.AddAutoMapper(typeof(AutoMapperHelper));
             services.AddDbContext<HLIMDataContext>(opts => opts.UseSqlServer(this.Configuration.GetConnectionString("HLIMS")));
             services.AddAppServices();
+
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddAzureAdBearer(options => Configuration.Bind("AzureAd", options));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyAllowSpecificOrigins",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                             .AllowAnyHeader()
+                                             .AllowAnyMethod();
+                                  });
+            });
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -79,6 +100,9 @@ namespace HLInsuranceManagementApp.API
 
             app.UseRouting();
 
+            app.UseCors("MyAllowSpecificOrigins");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

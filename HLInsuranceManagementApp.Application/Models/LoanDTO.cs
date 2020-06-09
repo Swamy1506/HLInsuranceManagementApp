@@ -10,9 +10,9 @@ namespace HLInsuranceManagementApp.Application.Models
 
         public int Id { get; set; }
         public int OrginalAmount { get; set; }
-        public int RemainingAmount { get; set; }
+        public int? RemainingAmount { get; set; }
         public int OrginalTenure { get; set; }
-        public int RemainingTenure { get; set; }
+        public int? RemainingTenure { get; set; }
 
         public int PropertyId { get; set; }
         public PropertyDTO Property { get; set; }

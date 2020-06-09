@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HLInsuranceManagementApp.Application.Models;
 using HLInsuranceManagementApp.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ namespace HLInsuranceManagementApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LoanController : ControllerBase
     {
 
@@ -44,6 +46,7 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
+                throw ex;
             }
             return loans;
         }
@@ -69,7 +72,7 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
-
+                throw ex;
             }
             return loanId;
 

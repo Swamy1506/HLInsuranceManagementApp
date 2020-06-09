@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using HLInsuranceManagementApp.Application.Models;
 using HLInsuranceManagementApp.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace HLInsuranceManagementApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BorrowerController : ControllerBase
@@ -45,6 +47,8 @@ namespace HLInsuranceManagementApp.API.Controllers
                 {
                     _logger.LogError(ex.Message);
                 }
+
+                throw ex;
             }
             return borrowersList;
         }
@@ -71,6 +75,7 @@ namespace HLInsuranceManagementApp.API.Controllers
                     _logger.LogError(ex.Message);
                 }
 
+                throw ex;
             }
             return borrowerId;
 
